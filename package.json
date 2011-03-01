@@ -1,0 +1,24 @@
+{
+  "name":"linkshare",
+  "description":"An implementation of the LinkShare WebServices API in NodeJS",
+  "keywords":["marketing","referral","link"],
+  "version":"0.0.1",
+  "author":"Garrett Wilkin <garrett.wilkin@gmail.com>",
+  "repository":
+   { "type":"git",
+     "url":"git://github.com/garrettwilkin/LinkShare.git"
+   },
+  "bugs" :
+  { "mail":"garrett.wilkin@gmail.com"
+  },
+  "main":"linkshare",
+  "dependencies": {
+    "vows":">= 0.5.2"
+  },
+  "engines":{"node":">= 0.4.1"},
+  "scripts": 
+   { "test":"vows tests/*",
+     "demo_1":"node demo-linkshare.js",
+     "demo_3":"node demo-album-art-server.js"
+   }
+}
