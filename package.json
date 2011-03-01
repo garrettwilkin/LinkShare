@@ -14,11 +14,12 @@
   "main":"linkshare",
   "dependencies": {
     "vows":">= 0.5.2"
+    "itunes":">= 0.0.1"
   },
   "engines":{"node":">= 0.4.1"},
   "scripts": 
    { "test":"vows tests/*",
      "demo_1":"node demo-linkshare.js",
-     "demo_3":"node demo-album-art-server.js"
+     "demo_2":"node demo-album-art-server.js"
    }
 }

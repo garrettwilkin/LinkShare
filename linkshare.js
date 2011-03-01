@@ -2,14 +2,13 @@
  *
  * Simple class for retrieving linkshare links. Original use case was for generating clickable iTunes links. Theoretically it can be used with any LinkShare merchant ID and URL.
  * Author: Garrett Wilkin
- * Date  : 2011/01/17
+ * Date  : 2011/02/28
  *
  */
 
 require.paths.unshift(require('path').join(__dirname));
 
 var http = require('http');
-var Timer = require('timer').Timer;
 
 /*
  * Constructor takes all information required by LinkShare to generate links.
@@ -39,20 +38,16 @@ LinkShare.prototype.getQuery = function() {
  */
 LinkShare.prototype.getLink = function(callback) {
     var self = this;
-    var clock = new Timer(self.url);
     var linksynergy = http.createClient(80,self.server);
     var request = linksynergy.request('GET',self.getQuery(),{host:self.server});
     linksynergy.request('GET',self.getQuery());
     request.end();
-    clock.set();
     request.on('response', function(response) {
         response.setEncoding('utf8');
         response.on('data', function(chunk) {
-            clock.elapsed('data');
             self.trackingUrl+=chunk;
         });
         response.on('end',function() {
-            clock.elapsed('end');
             callback(self.trackingUrl);
         });
     });
