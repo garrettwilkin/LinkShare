@@ -2,7 +2,7 @@
   "name":"linkshare",
   "description":"An implementation of the LinkShare WebServices API in NodeJS",
   "keywords":["marketing","referral","link"],
-  "version":"0.0.1",
+  "version":"0.0.2",
   "author":"Garrett Wilkin <garrett.wilkin@gmail.com>",
   "repository":
    { "type":"git",
