@@ -6,22 +6,18 @@
  *
  */
 
-require.paths.unshift(require('path').join(__dirname));
-
+var querystring = require('querystring');
 var http = require('http');
 
 /*
  * Constructor takes all information required by LinkShare to generate links.
  */
-function LinkShare(token,merchant,url) {
+function LinkShare(token, merchant, url) {
     this.token = token;
     this.merchant = merchant;
     this.url = url;
     this.server = 'feed.linksynergy.com';
-    this.URL =  { script:'/createcustomlink.shtml?',
-                  token:'token=',
-                  merchant:'&mid=',
-                  url:'&murl='};
+    this.path = '/createcustomlink.shtml',
     this.trackingUrl =  '';
 };
 exports.LinkShare = LinkShare;
@@ -30,7 +26,11 @@ exports.LinkShare = LinkShare;
  * Concatenates all parameter names and values for interacting with linkshare.
  */
 LinkShare.prototype.getQuery = function() {
-    return this.URL.script + this.URL.token + this.token + this.URL.merchant + this.merchant + this.URL.url + this.url;
+  return {
+    token: this.token,
+    mid: this.merchant,
+    murl: this.url,
+  }
 };
 
 /*
@@ -38,9 +38,10 @@ LinkShare.prototype.getQuery = function() {
  */
 LinkShare.prototype.getLink = function(callback) {
     var self = this;
-    var linksynergy = http.createClient(80,self.server);
-    var request = linksynergy.request('GET',self.getQuery(),{host:self.server});
-    linksynergy.request('GET',self.getQuery());
+    var request = http.get({
+      host: this.server,
+      path: this.path + '?' + querystring.stringify(this.getQuery()),
+    });
     request.end();
     request.on('response', function(response) {
         response.setEncoding('utf8');
