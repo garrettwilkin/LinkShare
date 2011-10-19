@@ -3,10 +3,8 @@
  * Simple demonstration of the iTunes class. 
  */
 
-require.paths.unshift(require('path').join(__dirname, '..','util'));
-
 var iTunes = require('itunes').iTunes;
-var LinkShare = require('linkshare').LinkShare;
+var LinkShare = require('../linkshare').LinkShare;
 
 /*
  * Demo of LinkShare class.
