@@ -16,7 +16,6 @@ function LinkShare(token, merchant, url) {
     this.token = token;
     this.merchant = merchant;
     this.url = url;
-    this.server = 'feed.linksynergy.com';
     this.server = 'getdeeplink.linksynergy.com';
     this.path = '/createcustomlink.shtml',
     this.trackingUrl =  '';
